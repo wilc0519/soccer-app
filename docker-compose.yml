@@ -4,17 +4,17 @@ services:
   api:
     container_name: api_soccer
     restart: always
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    depends_on:
+      - postgres
     ports:
       - 5000:5000
-    depends_on:
-      - db
+      
+    
     volumes:
       - .:/usr/src/app
 
-  db:
+  postgres:
     container_name: postgres_container
     image: postgres
     environment:
@@ -24,7 +24,7 @@ services:
     volumes:
        - data:/data/db
     ports:
-      - "5432:5432"
+      - 5432:5432
     
     restart: always
   
@@ -34,12 +34,12 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: wilc@admin.com
       PGADMIN_DEFAULT_PASSWORD: postgres
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
+      #PGADMIN_CONFIG_SERVER_MODE: 'False'
     ports:
-      - "8080:80"
+      - 8080:80
     depends_on:
-      - db
-    restart: always
+      - postgres
+    
 
 volumes:
     data: {}

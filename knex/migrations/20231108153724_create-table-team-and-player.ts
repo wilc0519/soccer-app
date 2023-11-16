@@ -18,6 +18,7 @@ export const up = (knex: Knex): Promise<void> =>
         table.string('name').notNullable();
         table.string('nationality');
         table.string('identificationDocument').notNullable();
+        table.date('birthdate').notNullable()
         table.integer('teamId').references('id').inTable(Team.tableName)
 
 
