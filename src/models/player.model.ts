@@ -6,6 +6,7 @@ export class Player extends Base {
     name!: string;
     nationality!: string;
     identificationDocument!: string;
+    birthday! :Date;
     teamId!: Number
 
 
