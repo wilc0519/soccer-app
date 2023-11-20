@@ -1,32 +1,17 @@
 import { Knex } from "knex";
-import { Player, Team } from "../../src/models";
 
-
-export const up = (knex: Knex): Promise<void> => 
-     knex.schema
-    .createTable(Team.tableName, (table: Knex.TableBuilder) => {
-        table.increments();
-        table.timestamps(true, true);
-        table.string('name').notNullable();
-        table.date('fundationDate');
-
-
-    })
-    .createTable(Player.tableName, (table: Knex.TableBuilder) => {
-        table.increments();
-        table.timestamps(true, true);
-        table.string('name').notNullable();
-        table.string('nationality');
-        table.string('identificationDocument').notNullable();
-        table.date('birthdate').notNullable()
-        table.integer('teamId').references('id').inTable(Team.tableName)
-
-
-    });
-
-export const down = (knex: Knex): Promise<void> => 
+export const up = (knex: Knex): Promise<void> =>
     knex.schema
-    .dropTable(Team.tableName)
-    .dropTable(Player.tableName);
+        .createTable('team', (table: Knex.TableBuilder) => {
+            table.increments('id').primary();
+            table.string('name').notNullable();
+            table.date('fundationDate').nullable();
+            table.timestamp('created_at').defaultTo(knex.fn.now())
+            table.timestamp('updated_at').defaultTo(knex.fn.now())
+        });
+    
+export const down = (knex: Knex): Promise<void> =>
+    knex.schema
+        .dropTable('team')
 
-   
+
