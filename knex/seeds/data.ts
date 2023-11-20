@@ -1,5 +1,5 @@
 import { Knex } from "knex";
-import { Team, Player } from "../../src/models";
+//import { Team, Player } from "../../src/models";
 
 const now = new Date();
 
@@ -41,6 +41,7 @@ const players = [
         id: 1,
         name: "Wilmer Lopez",
         nationality: "Ecuatoriano",
+        birthdate: new Date("1979-05-19"),
         identificationDocument: "1714406962",
         teamId: 3
     },
@@ -48,6 +49,7 @@ const players = [
         id: 2,
         name: "Rene Enriquez",
         nationality: "Ecuatoriano",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1754963218",
         teamId: 1
     },
@@ -55,6 +57,7 @@ const players = [
         id: 3,
         name: "Roberto Espinoza",
         nationality: "Ecuatoriano",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1779564123",
         teamId: 2
     },
@@ -62,6 +65,7 @@ const players = [
         id: 4,
         name: "Paul Velez",
         nationality: "Peruano",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1712358945",
         teamId: 4
     },
@@ -69,6 +73,7 @@ const players = [
         id: 5,
         name: "Gustavo Lema",
         nationality: "Tubicola",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1762354795",
         teamId: 5
     },
@@ -76,6 +81,7 @@ const players = [
         id: 6,
         name: "Carlos Barrera",
         nationality: "Espanol",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1767823149",
         teamId: 6
     },
@@ -83,13 +89,15 @@ const players = [
         id: 7,
         name: "Marco Lara",
         nationality: "Cubano",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1703256987",
         teamId: 1
     },
     {
         id: 8,
         name: "Belga",
-        nationality: "Belga",
+        nationality: "Belga with V",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1798745632",
         teamId: 2
     },
@@ -97,6 +105,7 @@ const players = [
         id: 9,
         name: "Marcelo Acosta",
         nationality: "Ecuatoriano",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1736894567",
         teamId: 3
     },
@@ -104,6 +113,7 @@ const players = [
         id: 10,
         name: "Daniel Salgado",
         nationality: "Lunatico",
+        birthdate: new Date("1987-01-27"),
         identificationDocument: "1723564821",
         teamId: 4
     },
@@ -112,10 +122,8 @@ const players = [
 
 
 export const seed = async (knex: Knex): Promise<void> =>{
-    
-    await knex(Team.tableName).del();
-    await knex(Team.tableName).insert(teams);
-
-    await knex(Player.tableName).del();
-    await knex(Player.tableName).insert(players)
+    await knex('player').del();
+    await knex('team').del();
+    await knex('team').insert(teams);
+    await knex('player').insert(players)
 };
