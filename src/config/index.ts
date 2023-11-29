@@ -32,4 +32,3 @@ export const config: Env = {
   defaultPage: 0,
   defaultPageSize: 10,
 };
-

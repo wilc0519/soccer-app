@@ -1,19 +1,6 @@
 version: "3.8"
 
 services:
-  api:
-    container_name: api_soccer
-    restart: always
-    build: .
-    depends_on:
-      - postgres
-    ports:
-      - 5000:5000
-      
-    
-    volumes:
-      - .:/usr/src/app
-
   postgres:
     container_name: postgres_container
     image: postgres
@@ -22,9 +9,9 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: soccerdb
     volumes:
-       - data:/data/db
+       - nps_data:/var/lib/postgresql/data
     ports:
-      - 5432:5432
+      - "5432:5432"
     
     restart: always
   
@@ -42,5 +29,5 @@ services:
     
 
 volumes:
-    data: {}
+    nps_data: {}
 
