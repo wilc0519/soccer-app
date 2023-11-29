@@ -11,7 +11,7 @@ export class Team extends Base {
   static get relationMappings(): RelationMappings {
     return {
       team: {
-        relation: Model.BelongsToOneRelation,
+        relation: Model.HasManyRelation,
         modelClass: Player,
         join: {
           from: 'team.id',
