@@ -24,8 +24,20 @@ const create = async (req: Request, res: Response): Promise<Response> => {
   return res.status(StatusCodes.CREATED).json(team);
 };
 
+const update = async (req: Request, res: Response): Promise<Response> => {
+  const id: Id = req.params.id;
+  const team = await Team.query().findById(id).patch(req.body);
+  if (!team) {
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ message: 'team not found' });
+  }
+  return res.sendStatus(StatusCodes.OK);
+};
+
 export const TeamController = {
   getAll,
   get,
   create,
+  update,
 };
