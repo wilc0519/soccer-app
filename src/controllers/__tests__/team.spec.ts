@@ -40,4 +40,15 @@ describe('TeamController', () => {
       expect(response.status).toBe(StatusCodes.NOT_FOUND);
     });
   });
+
+  describe('Create', () => {
+    test('should create a new team correctly', async () => {
+      const team = factories.team.build();
+
+      const response = await request(server).post('/teams').send(team);
+
+      expect(response.status).toBe(StatusCodes.CREATED);
+      expect(response.body.name).toBe(team.name);
+    });
+  });
 });
