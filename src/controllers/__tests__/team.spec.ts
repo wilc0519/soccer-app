@@ -70,4 +70,23 @@ describe('TeamController', () => {
       expect(response.status).toBe(StatusCodes.NOT_FOUND);
     });
   });
+
+  describe('Delete', () => {
+    test('should delete a team correctly', async () => {
+      const team = factories.team.build();
+
+      const { id } = await Team.query().insert(team);
+
+      const getResponse = await request(server).get(`/teams/${id}`);
+      expect(getResponse.body.id).toBe(id);
+
+      const deleteResponse = await request(server).delete(`/teams/${id}`);
+      expect(deleteResponse.status).toBe(StatusCodes.NO_CONTENT);
+    });
+
+    test("should return 404 if team doesn't exists", async () => {
+      const response = await request(server).delete(`/teams/6666`);
+      expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    });
+  });
 });

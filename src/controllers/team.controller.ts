@@ -35,9 +35,23 @@ const update = async (req: Request, res: Response): Promise<Response> => {
   return res.sendStatus(StatusCodes.OK);
 };
 
+export const remove = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id: Id = req.params.id;
+  const team = await Team.query().findById(id);
+  if (!team) {
+    return res.sendStatus(StatusCodes.NOT_FOUND);
+  }
+  await Team.query().deleteById(id);
+  return res.sendStatus(StatusCodes.NO_CONTENT);
+};
+
 export const TeamController = {
   getAll,
   get,
   create,
   update,
+  remove,
 };
