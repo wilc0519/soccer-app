@@ -6,7 +6,7 @@ export class Player extends Base {
   name!: string;
   nationality!: string;
   identification_number!: string;
-  birthday!: Date;
+  birthdate!: Date;
   team_id!: number;
 
   static tableName = 'player';
