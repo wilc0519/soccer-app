@@ -58,4 +58,22 @@ describe('PlayerController', () => {
       expect(response.body.name).toBe(player.name);
     });
   });
+
+  describe('Update', () => {
+    test('shoud update a player correctly', async () => {
+      const player = factories.player.build();
+      const postResponse = await request(server).post('/players').send(player);
+      expect(postResponse.status).toBe(StatusCodes.CREATED);
+      const newTeamData = factories.player.build();
+      const putResponse = await request(server)
+        .put(`/players/${postResponse.body.id}`)
+        .send(newTeamData);
+
+      expect(putResponse.status).toBe(StatusCodes.OK);
+    });
+    test('shoud return status 404 is player does not exist', async () => {
+      const response = await request(server).put('/players/6666');
+      expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    });
+  });
 });
