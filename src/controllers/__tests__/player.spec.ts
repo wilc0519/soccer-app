@@ -24,4 +24,21 @@ describe('PlayerController', () => {
       expect(response.body.length).toBeGreaterThan(0);
     });
   });
+
+  describe('Get', () => {
+    test('Given an id, should get a player correctly', async () => {
+      const player = factories.player.build();
+      const { id } = await Player.query().insert(player);
+
+      const response = await request(server).get(`/players/${id}`);
+
+      expect(response.status).toBe(StatusCodes.OK);
+      expect(response.body.id).toBe(id);
+    });
+    test("Given an id, should return 404 if player doesn't exist", async () => {
+      const response = await request(server).get('/players/6666');
+
+      expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    });
+  });
 });

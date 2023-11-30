@@ -26,19 +26,18 @@ describe('TeamController', () => {
     });
   });
   describe('Get', () => {
-    test("Given a id should get a team correctly", async () => {
-      const team = factories.team.build()
-      const { id } = await Team.query().insert(team)
+    test('Given a id should get a team correctly', async () => {
+      const team = factories.team.build();
+      const { id } = await Team.query().insert(team);
 
       const response = await request(server).get(`/teams/${id}`);
 
       expect(response.status).toBe(StatusCodes.OK);
-      expect(response.body.id).toBe(id)
+      expect(response.body.id).toBe(id);
     });
     test("Given a id should return 404 if team doesn't exist team", async () => {
-      
-      const response = await request(server).get(`/teams/6666`)
-      expect(response.status).toBe(StatusCodes.NOT_FOUND)
-    })
-  })
+      const response = await request(server).get(`/teams/6666`);
+      expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    });
+  });
 });

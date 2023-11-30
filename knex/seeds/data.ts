@@ -119,8 +119,8 @@ const players = [
 ];
 
 export const seed = async (knex: Knex): Promise<void> => {
-  await knex.raw('TRUNCATE TABLE "player" CASCADE')
-  await knex.raw('TRUNCATE TABLE "team" CASCADE')
+  await knex.raw('TRUNCATE TABLE "player" CASCADE');
+  await knex.raw('TRUNCATE TABLE "team" CASCADE');
   await knex('team').insert(teams);
   await knex('player').insert(players);
 };
