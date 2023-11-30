@@ -19,7 +19,13 @@ const get = async (req: Request, res: Response): Promise<Response> => {
   return res.status(StatusCodes.OK).json(player);
 };
 
+const create = async (req: Request, res: Response): Promise<Response> => {
+  const player = await Player.query().insert(req.body);
+  return res.status(StatusCodes.CREATED).json(player);
+};
+
 export const PlayerController = {
   getAll,
   get,
+  create,
 };
