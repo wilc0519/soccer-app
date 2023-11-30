@@ -76,4 +76,23 @@ describe('PlayerController', () => {
       expect(response.status).toBe(StatusCodes.NOT_FOUND);
     });
   });
+
+  describe('Delete', () => {
+    test('should delete a player correctly', async () => {
+      const player = factories.player.build();
+
+      const { id } = await Player.query().insert(player);
+
+      const getResponse = await request(server).get(`/players/${id}`);
+      expect(getResponse.body.id).toBe(id);
+
+      const deleteResponse = await request(server).delete(`/players/${id}`);
+      expect(deleteResponse.status).toBe(StatusCodes.NO_CONTENT);
+    });
+
+    test("should return 404 if player doesn't exists", async () => {
+      const response = await request(server).delete(`/players/6666`);
+      expect(response.status).toBe(StatusCodes.NOT_FOUND);
+    });
+  });
 });
