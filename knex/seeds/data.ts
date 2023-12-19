@@ -118,80 +118,80 @@ const players = [
   },
 ];
 
-const matches =[
+const matches = [
   {
-    id:1,
+    id: 1,
     date: new Date('2023-02-26'),
     time: '13:00',
-    name_local_team:"Barcelona",
+    name_local_team: 'BARCELONA',
     name_team_visit: 'LDU',
     local_team_goals: 3,
-    away_team_goals: 2
+    away_team_goals: 2,
   },
   {
-    id:2,
+    id: 2,
     date: new Date('2023-02-26'),
     time: '14:30',
-    name_local_team:"HDS",
+    name_local_team: 'HDS',
     name_team_visit: 'EMELEC',
     local_team_goals: 2,
-    away_team_goals: 2
+    away_team_goals: 2,
   },
   {
-    id:3,
+    id: 3,
     date: new Date('2023-03-05'),
     time: '13:00',
-    name_local_team:"EMELEC",
+    name_local_team: 'EMELEC',
     name_team_visit: 'BARCELONA',
     local_team_goals: 5,
-    away_team_goals: 4
+    away_team_goals: 4,
   },
   {
-    id:4,
+    id: 4,
     date: new Date('2023-03-05'),
     time: '14:30',
-    name_local_team:"HDS",
+    name_local_team: 'HDS',
     name_team_visit: 'LDU',
     local_team_goals: 3,
-    away_team_goals: 2
+    away_team_goals: 2,
   },
   {
-    id:5,
+    id: 5,
     date: new Date('2023-03-12'),
     time: '13:00',
-    name_local_team:"HDS",
+    name_local_team: 'HDS',
     name_team_visit: 'BARCELONA',
     local_team_goals: 3,
-    away_team_goals: 2
+    away_team_goals: 2,
   },
   {
-    id:6,
+    id: 6,
     date: new Date('2023-03-12'),
     time: '14:30',
-    name_local_team:"EMELEC",
+    name_local_team: 'EMELEC',
     name_team_visit: 'LDU',
     local_team_goals: 2,
-    away_team_goals: 2
+    away_team_goals: 2,
   },
   {
-    id:7,
+    id: 7,
     date: new Date('2023-03-19'),
     time: '13:00',
-    name_local_team:"BARCELONA",
+    name_local_team: 'BARCELONA',
     name_team_visit: 'HDS',
     local_team_goals: 5,
-    away_team_goals: 4
+    away_team_goals: 4,
   },
   {
-    id:8,
+    id: 8,
     date: new Date('2023-03-19'),
     time: '14:30',
-    name_local_team:"LDU",
+    name_local_team: 'LDU',
     name_team_visit: 'EMELEC',
     local_team_goals: 3,
-    away_team_goals: 2
-  }
-]
+    away_team_goals: 2,
+  },
+];
 
 export const seed = async (knex: Knex): Promise<void> => {
   await knex.raw('TRUNCATE TABLE "player" CASCADE');
