@@ -35,9 +35,23 @@ const update = async (req: Request, res: Response): Promise<Response> => {
   return res.sendStatus(StatusCodes.OK);
 };
 
+export const remove = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const id: Id = req.params.id;
+  const player = await Player.query().findById(id);
+  if (!player) {
+    return res.sendStatus(StatusCodes.NOT_FOUND);
+  }
+  await Player.query().deleteById(id);
+  return res.sendStatus(StatusCodes.NO_CONTENT);
+};
+
 export const PlayerController = {
   getAll,
   get,
   create,
   update,
+  remove,
 };
